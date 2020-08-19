@@ -1,0 +1,32 @@
+{
+  "name": "startup-survey",
+  "version": "1.0.0",
+  "description": "An advanced node with mongodb, google-auth , stripe and email servers",
+  "main": "index.js",
+  "engines": {
+    "node": "8.1.1",
+    "npm": "5.0.3"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acquahsamuel/startup-survey.git"
+  },
+  "keywords": [
+    "Node",
+    "backend",
+    "payment",
+    "google-auth"
+  ],
+  "author": "Acquah Samuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acquahsamuel/startup-survey/issues"
+  },
+  "homepage": "https://github.com/acquahsamuel/startup-survey#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
