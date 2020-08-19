@@ -5,7 +5,8 @@ const app = express();
 
 app.get('/', (req, res) => {
     res.send({
-        hi: ' Hello world '
+        Developr : ' Acquah Samuel ',
+        Project : " Startup Survey for Companies "
     })
 });
 
