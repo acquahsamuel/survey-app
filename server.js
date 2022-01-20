@@ -10,13 +10,14 @@ require("./models/User");
 require("./services/passport");
 
 const app = express();
+ 
 
 //initializing a cookie to handle users session
 app.use(
   cookieSession({
     // expiry date for cookie + encryption(cookie_keys)
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEYS],
+    keys: [process.env.COOKIE_KEY],
   })
 );
 
