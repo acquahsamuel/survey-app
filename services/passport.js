@@ -6,7 +6,8 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const User = mongoose.model("users");
 
-
+// googleId = profileId 
+// _id = user.id 
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -16,6 +17,7 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
+
 
 passport.use(
   new GoogleStrategy(
@@ -34,6 +36,4 @@ passport.use(
             .then(user => done(null, user));
         }
       });
-    }
-  )
-);
+    }));
