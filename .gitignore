@@ -93,3 +93,5 @@ typings/
 data.js
 
 
+config.env 
+.env 
