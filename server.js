@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
+
 const connectDB = require("./config/db");
 dotenv.config({ path: "./config.env" });
 connectDB();
@@ -10,7 +11,6 @@ require("./models/User");
 require("./services/passport");
 
 const app = express();
- 
 
 //initializing a cookie to handle users session
 app.use(

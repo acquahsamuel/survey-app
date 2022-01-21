@@ -3,7 +3,8 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
-dotenv.config({ path: "./config.env" });
+// dotenv.config({ path: "./config.env" });
+const keys = require("../config/keys");
 const User = mongoose.model("users");
 
 // googleId = profileId
@@ -18,12 +19,14 @@ passport.deserializeUser((id, done) => {
   });
 });
 
+// relative path
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID_PROD,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET_PROD,
+      clientID: keys.googleClientID,
+      clientSecret: keys.googleClientSecret,
       callbackURL: "/auth/google/callback",
+      proxy : true
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }).then((existingUser) => {
