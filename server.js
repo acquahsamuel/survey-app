@@ -1,32 +1,48 @@
 const express = require("express");
-const dotenv = require("dotenv");
-const passport = require("passport");
+const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
-
-const connectDB = require("./config/db");
-dotenv.config({ path: "./config.env" });
-connectDB();
-
+const passport = require("passport");
+const bodyParser = require("body-parser");
+const keys = require("./config/keys");
 require("./models/User");
+require("./models/Survey");
 require("./services/passport");
+
+mongoose.Promise = global.Promise;
+mongoose.connect(keys.mongoURI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
 const app = express();
 
-//initializing a cookie to handle users session
+app.use(bodyParser.json());
 app.use(
   cookieSession({
-    // expiry date for cookie + encryption(cookie_keys)
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEY],
+    keys: [keys.cookieKey],
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./routes/authRoutes")(app);
+// require('./routes/authRoutes')(app);
+// require('./routes/billingRoutes')(app);
+// require('./routes/surveyRoutes')(app);
+
+if (process.env.NODE_ENV === "production") {
+  // Express will serve up production assets
+  // like our main.js file, or main.css file!
+  app.use(express.static("client/build"));
+
+  // Express will serve up the index.html file
+  // if it doesn't recognize the route
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
-  `App is runing on ${PORT} hosted on Heroku`;
-});
+console.log(`App is runing on ${PORT}`);
+app.listen(PORT);
