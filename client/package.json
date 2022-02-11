@@ -11,6 +11,10 @@
     }
   },
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.4.1",
+    "@mui/styled-engine-sc": "^5.4.1",
     "axios": "^0.16.2",
     "http-proxy-middleware": "^2.0.3",
     "materialize-css": "^0.99.0",
@@ -22,7 +26,8 @@
     "react-stripe-checkout": "^2.4.0",
     "redux": "^3.7.1",
     "redux-form": "^7.0.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^5.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
